@@ -18,6 +18,10 @@ class _AppState extends State<App> {
     _currentPageIndex = 0;
   }
 
+  void a() {
+    return;
+  }
+
   Widget _bodyWidget() {
     switch (_currentPageIndex) {
       case 0:
