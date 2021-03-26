@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_basic_1/components/manor_temperature_widget.dart';
 
 class DetailContentView extends StatefulWidget {
   Map<String, String> data;
@@ -52,7 +53,7 @@ class _DetailContentViewState extends State<DetailContentView> {
     );
   }
 
-  Widget _bodyWidget() {
+  Widget _makeSliderImage() {
     return Container(
       child: Stack(
         children: [
@@ -104,6 +105,57 @@ class _DetailContentViewState extends State<DetailContentView> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _sellerSimpleInfo() {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Row(
+        children: [
+          // ClipRRect(
+          //   borderRadius: BorderRadius.circular(50),
+          //   child: Container(
+          //     width: 50,
+          //     height: 50,
+          //     child: Image.asset("assets/images/user.png"),
+          //   ),
+          // )
+          CircleAvatar(
+            radius: 25,
+            backgroundImage: Image.asset("assets/images/user.png").image,
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "개발하는 길동",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+              Text(
+                "제주시 도남동",
+              )
+            ],
+          ),
+          Expanded(
+            child: ManorTemperature(
+              manorTemp: 37.5,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _bodyWidget() {
+    return Column(
+      children: [_makeSliderImage(), _sellerSimpleInfo()],
     );
   }
 
