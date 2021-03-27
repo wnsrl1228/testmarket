@@ -24,12 +24,12 @@ class _DetailContentViewState extends State<DetailContentView>
   double scrollpositionToAplpha = 0;
   AnimationController _anumationController;
   Animation _colorTween;
-  bool isMyFavoriteContent;
+  bool isMyFavoriteContent = false;
 
   @override
   void initState() {
     super.initState();
-    isMyFavoriteContent = false;
+
     contentsRepository = ContentsRepository();
     _anumationController = AnimationController(vsync: this);
     _colorTween = ColorTween(begin: Colors.white, end: Colors.black)
@@ -321,8 +321,14 @@ class _DetailContentViewState extends State<DetailContentView>
       child: Row(
         children: [
           GestureDetector(
-            onTap: () {
-              contentsRepository.addMyDavoriteContent(widget.data);
+            onTap: () async {
+              if (isMyFavoriteContent) {
+                await contentsRepository
+                    .deleteMyFavoriteContent(widget.data['cid']);
+              } else {
+                await contentsRepository.addMyDavoriteContent(widget.data);
+              }
+
               setState(() {
                 isMyFavoriteContent = !isMyFavoriteContent;
               });
