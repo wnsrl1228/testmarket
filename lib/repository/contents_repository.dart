@@ -1,4 +1,9 @@
-class ContentsRepository {
+import 'dart:convert';
+
+import 'package:flutter_basic_1/repository/local_storate_repository.dart';
+
+class ContentsRepository extends LocalStorageRepository {
+  final String My_FAVORITE_STORE_KEY = "My_FAVORITE_STORE_KEY";
   Map<String, dynamic> data = {
     "ara": [
       {
@@ -172,5 +177,19 @@ class ContentsRepository {
     await Future.delayed(Duration(microseconds: 1000));
 
     return data[location];
+  }
+
+  addMyDavoriteContent(Map<String, String> content) {
+    this.storeValue(My_FAVORITE_STORE_KEY, jsonEncode(content));
+  }
+
+  isMyDavoritecontents(String cid) async {
+    String jsonString = await this.getStoredValue(My_FAVORITE_STORE_KEY);
+    if (jsonString != null) {
+      Map<String, dynamic> json = jsonDecode(jsonString);
+      return cid == json["cid"];
+    } else {
+      return null;
+    }
   }
 }
