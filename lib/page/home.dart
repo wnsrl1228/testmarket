@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basic_1/page/detail.dart';
 import 'package:flutter_basic_1/repository/contents_repository.dart';
+import 'package:flutter_basic_1/utils/data_utils.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 
@@ -23,12 +24,6 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     currentLocation = "ara";
-  }
-
-  final oCcy = new NumberFormat("#,###", "ko_KR");
-  String calcStringToMon(String priceString) {
-    if (priceString == "무료나눔") return priceString;
-    return "${oCcy.format(int.parse(priceString))}원";
   }
 
   Widget _appbarWidget() {
@@ -149,7 +144,7 @@ class _HomeState extends State<Home> {
                           height: 5,
                         ),
                         Text(
-                          calcStringToMon(datas[index]["price"]),
+                          DataUtils.calcStringToMon(datas[index]["price"]),
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                           ),
