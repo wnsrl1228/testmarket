@@ -196,7 +196,6 @@ class ContentsRepository extends LocalStorageRepository {
     } else {
       favoritContentList.add(content);
     }
-    favoritContentList.add(content);
 
     updateFavoriteContent(favoritContentList);
   }

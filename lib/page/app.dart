@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_basic_1/page/favorite.dart';
 import 'package:flutter_basic_1/page/home.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -34,7 +35,7 @@ class _AppState extends State<App> {
         return Container();
         break;
       case 4:
-        return Container();
+        return MyFavoriteContents();
         break;
     }
   }
